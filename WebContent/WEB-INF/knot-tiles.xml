@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+    
+<tiles-definitions>
+
+	<!-- 각 main page -->
+	
+	<definition name="main" template="/tiles/main_layout.jsp">
+		<put-attribute name="header" value="/tiles/header/main_header.jsp" />
+		<put-attribute name="body" value="/tiles/body/main_body.jsp" />
+		<put-attribute name="footer" value="/tiles/footer/footer.jsp" />
+	</definition>	
+
+
+
+
+
+	
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+		<!-- Admin view -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+	<!-- 관리자 메인  -->
+	<definition name="admin" template="/tiles/admin_layout.jsp">
+		<put-attribute name="header" value="/tiles/header/admin_header.jsp" />
+		<put-attribute name="body" value="/tiles/body/admin_body.jsp" />
+	</definition>
+
+
+	<!-- 관리자 리스트 -->
+	<definition name="admin_member" extends="admin">
+		<put-attribute name="body" value="/list/memberList.jsp" />
+	</definition>
+	
+	<definition name="admin_qna" extends="admin">
+		<put-attribute name="body" value="/list/qnaList.jsp" />
+	</definition>
+	
+	<definition name="admin_faq" extends="admin">
+		<put-attribute name="body" value="/list/faqList.jsp" />
+	</definition>
+	
+	<definition name="admin_notice" extends="admin">
+		<put-attribute name="body" value="/list/noticeList.jsp" />
+	</definition>
+	
+	<definition name="admin_mainCat" extends="admin">
+		<put-attribute name="body" value="/list/mainCatList.jsp" />
+	</definition>
+
+	<definition name="admin_areaCat" extends="admin">
+		<put-attribute name="body" value="/list/areaCatList.jsp" />
+	</definition>
+
+	<definition name="admin_order" extends="admin">
+		<put-attribute name="body" value="/list/orderList.jsp" />
+	</definition>
+
+	<definition name="admin_item" extends="admin">
+		<put-attribute name="body" value="/list/itemList.jsp" />
+	</definition>
+
+	
+	<!-- 관리자 입력 및 수정 -->
+
+	<definition name="admin_memForm" extends="admin">
+		<put-attribute name="body" value="/write/memberWrite.jsp" />
+	</definition>
+
+	<definition name="admin_qnaForm" extends="admin">
+		<put-attribute name="body" value="/write/qnaWrite.jsp" />
+	</definition>
+	
+	<definition name="admin_faqForm" extends="admin">
+		<put-attribute name="body" value="/write/faqWrite.jsp" />
+	</definition>
+	
+	<definition name="admin_noticeForm" extends="admin">
+		<put-attribute name="body" value="/write/noticeWrite.jsp" />
+	</definition>
+
+	<definition name="admin_mainCatForm" extends="admin">
+		<put-attribute name="body" value="/write/mainCatWrite.jsp" />
+	</definition>
+
+	<definition name="admin_areaCatForm" extends="admin">
+		<put-attribute name="body" value="/write/areaCatWrite.jsp" />
+	</definition>
+
+	<definition name="admin_orderForm" extends="admin">
+		<put-attribute name="body" value="/write/orderWrite.jsp" />
+	</definition>
+
+	<definition name="admin_itemForm" extends="admin">
+		<put-attribute name="body" value="/write/itemWrite.jsp" />
+	</definition>
+
+
+	<!-- 관리자 상세보기 -->
+
+	<definition name="admin_memView" extends="admin">
+		<put-attribute name="body" value="/write/memberView.jsp" />
+	</definition>
+	
+	<definition name="admin_qnaView" extends="admin">
+		<put-attribute name="body" value="/view/qnaView.jsp" />
+	</definition>
+	
+	<definition name="admin_faqView" extends="admin">
+		<put-attribute name="body" value="/view/faqView.jsp" />
+	</definition>
+	
+	<definition name="admin_noticeView" extends="admin">
+		<put-attribute name="body" value="/view/noticeView.jsp" />
+	</definition>
+	
+	<definition name="admin_mainCatView" extends="admin">
+		<put-attribute name="body" value="/view/mainCatView.jsp" />
+	</definition>
+	
+	<definition name="admin_orderView" extends="admin">
+		<put-attribute name="body" value="/view/orderView.jsp" />
+	</definition>
+
+	<definition name="admin_itemView" extends="admin">
+		<put-attribute name="body" value="/view/itemView.jsp" />
+	</definition>
+
+	
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+			<!-- Mypage view -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+	<definition name="myPage" template="/tiles/myPage_layout.jsp">
+		<put-attribute name="header" value="/tiles/header/myPage_header.jsp" />
+		<put-attribute name="body" value="/tiles/body/myPage_body.jsp" />
+		<put-attribute name="footer" value="/tiles/footer/footer.jsp" />
+	</definition>
+
+	<!-- 사용자 리스트 -->
+	
+	<definition name="myPage_qna" extends="myPage">
+		<put-attribute name="body" value="/list/qnaList.jsp" />
+	</definition>
+	
+	<definition name="myPage_faq" extends="myPage">
+		<put-attribute name="body" value="/list/faqList.jsp" />
+	</definition>
+	
+	<definition name="myPage_notice" extends="myPage">
+		<put-attribute name="body" value="/list/noticeList.jsp" />
+	</definition>
+
+	<definition name="myPage_item" extends="myPage">
+		<put-attribute name="body" value="/list/itemList.jsp" />
+	</definition>
+
+	<definition name="myPage_order" extends="myPage">
+		<put-attribute name="body" value="/list/orderList.jsp" />
+	</definition>
+
+	
+	<!-- 사용자 입력 및 수정 -->
+
+	<definition name="myPage_qnaForm" extends="myPage">
+		<put-attribute name="body" value="/write/qnaWrite.jsp" />
+	</definition>
+
+	<definition name="myPage_memForm" extends="myPage">
+		<put-attribute name="body" value="/write/memberWrite.jsp" />
+	</definition>
+
+	<definition name="myPage_itemForm" extends="myPage">
+		<put-attribute name="body" value="/write/itemWrite.jsp" />
+	</definition>
+
+	<definition name="myPage_orderForm" extends="myPage">
+		<put-attribute name="body" value="/write/orderWrite.jsp" />
+	</definition>
+
+
+	<!-- 사용자 상세보기 -->
+
+	<definition name="myPage_memView" extends="myPage">
+		<put-attribute name="body" value="/write/memberView.jsp" />
+	</definition>
+	
+	<definition name="myPage_qnaView" extends="myPage">
+		<put-attribute name="body" value="/view/qnaView.jsp" />
+	</definition>
+	
+	<definition name="myPage_faqView" extends="myPage">
+		<put-attribute name="body" value="/view/faqView.jsp" />
+	</definition>
+	
+	<definition name="myPage_noticeView" extends="myPage">
+		<put-attribute name="body" value="/view/noticeView.jsp" />
+	</definition>
+
+	<definition name="myPage_orderView" extends="myPage">
+		<put-attribute name="body" value="/view/orderView.jsp" />
+	</definition>
+	
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+	
+
+
+
+
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+			<!-- Other view-->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+	<!-- 일반 메인  -->
+	<definition name="other" template="/tiles/other_layout.jsp">
+		<put-attribute name="header" value="/tiles/header/other_header.jsp" />
+		<put-attribute name="body" value="/tiles/body/other_body.jsp" />
+		<put-attribute name="footer" value="/tiles/footer/footer.jsp" />
+	</definition>
+
+
+	<!-- 일반 리스트 -->
+
+	<definition name="other_item" extends="other">
+		<put-attribute name="body" value="/list/itemList.jsp" />
+	</definition>
+
+	<definition name="other_itemView" extends="other">
+		<put-attribute name="body" value="/view/itemView.jsp" />
+	</definition>
+	
+	<definition name="other_itemForm" extends="other">
+		<put-attribute name="body" value="/write/itemWrite.jsp" />
+	</definition>
+
+
+	
+	<!-- 일반 입력 및 수정 -->
+
+
+	<!-- 일반 상세보기 -->
+
+
+	<!-- 일반 삭제 -->
+	
+	
+	<!-- 에러페이지 -->
+	<definition name="errorPage" extends="other">
+		<put-attribute name="body" value="/auth/errorPage.jsp" />
+	</definition>
+	
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	
+
+
+
+
+
+
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+		<!-- Member Authority -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+	<!-- 로그인관련 기능 -->
+
+	<definition name="loginForm" extends="other">
+		<put-attribute name="body" value="/auth/loginForm.jsp" />
+	</definition>
+
+
+	<definition name="memberForm" extends="other">
+		<put-attribute name="body" value="/write/memberWrite.jsp" />
+	</definition>
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+</tiles-definitions>
+    
