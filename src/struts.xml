@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.multipart.saveDir" value="/tmp"/> 
+	<constant name="struts.multipart.maxSize" value="102400000"/> 
+	
+
+	
+
+	<package name="main" extends="struts-default, tiles-default">
+		
+		<action name="main" class="totalList.ListAction">
+			<param name="userReq">main</param>
+			<interceptor-ref name="staticParams"/> 
+			<interceptor-ref name="params"/>
+			<result type="tiles">main</result>
+
+		</action>
+
+	</package> 
+	
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+				<!-- other -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+
+	<package name="other" extends="struts-default, tiles-default">
+
+		<!-- other - Item -->
+
+		<action name="other_find_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">other_find_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="params"/>
+			<result type="tiles">other_item</result>
+
+		</action> 
+
+		<action name="other_cat_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">other_cat_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="params"/>
+			<result type="tiles">other_item</result>
+
+		</action>
+
+
+		<action name="other_area_cat_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">other_area_cat_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="params"/>
+			<result type="tiles">other_item</result>
+		</action> 
+
+		<action name="other_area_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">other_area_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="params"/>
+			<result type="tiles">other_item</result>
+		</action>
+
+		<action name="other_itemView" class="totalView.ViewAction">
+			<result type="tiles">other_itemView</result>
+		</action>
+		
+		<action name="other_itemForm" class="totalList.ListAction">
+			<param name="userReq">itemCat</param>
+			<param name="userType">admin_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="params"/>
+			<result type="tiles">other_itemForm</result>
+		</action>
+		
+		<action name="other_itemWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">main</result>
+		</action>
+		
+
+	</package>
+
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+				<!-- Mypage -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+
+	<package name="myPage" extends="struts-default, tiles-default">
+
+		<interceptors>
+	    		<interceptor name="LoginCheck" class="intercept.LoginCheck"/>
+	  	</interceptors>  
+
+	  
+		
+
+		<action name="myPage" class="totalList.ListAction">
+			<param name="userReq">member</param>
+			<param name="userType">myPage_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage</result>
+		</action>
+
+
+		<!-- myPage - QnA -->
+		
+		<action name="myPage_qna" class="totalList.ListAction">
+			<param name="userReq">qna</param>
+			<param name="userType">myPage_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_qna</result>
+		</action>
+		
+		 <action name="myPage_qnaForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">myPage_qnaForm</result>
+		</action>
+		  
+		<action name="myPage_qnaWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">myPage_qna</result>
+		</action>
+		
+
+
+		<!-- myPage - FAQ -->
+		
+		<action name="myPage_faq" class="totalList.ListAction">
+			<param name="userReq">faq</param>
+			<param name="userType">myPage_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_faq</result>
+		</action>
+
+		
+		<!-- myPage - Notice -->
+
+		<action name="myPage_notice" class="totalList.ListAction">
+			<param name="userReq">notice</param>
+			<param name="userType">myPage_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_notice</result>
+		</action>
+
+
+		<!-- myPage - Item -->
+
+		<action name="myPage_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">myPage_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_item</result>
+		</action> 
+
+		<action name="myPage_itemForm" class="totalList.ListAction">
+			<param name="userReq">itemCat</param>
+			<param name="userType">myPage_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_itemForm</result>
+		</action>
+		
+		<action name="myPage_itemWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">myPage_item</result>
+		</action>
+
+		<action name="myPage_itemView" class="totalView.ViewAction">
+			<result type="tiles">myPage_itemView</result>
+		</action>
+
+		<action name="myPage_itemDelete" class="totalDelete.DeleteAction">
+			<result type="redirect-action">myPage_item</result>
+		</action>
+
+		<!-- myPage - Order -->
+
+		<action name="myPgae_order" class="totalList.ListAction">
+			<param name="userReq">order</param>
+			<param name="userType">myPgae_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_order</result>
+		</action> 
+
+		<action name="myPgae_sal_order" class="totalList.ListAction">
+			<param name="userReq">order</param>
+			<param name="userType">myPgae_sal_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_order</result>
+		</action> 
+
+		<action name="myPgae_user_order" class="totalList.ListAction">
+			<param name="userReq">order</param>
+			<param name="userType">myPgae_user_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="LoginCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">myPage_order</result>
+		</action> 
+
+		<action name="myPage_orderForm" class="totalView.ViewAction">
+			<result type="tiles">myPage_orderForm</result>
+		</action>
+		
+		<action name="myPage_orderWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">main</result>
+		</action>
+
+		<action name="myPage_orderView" class="totalView.ViewAction">
+			<result type="tiles">admin_orderView</result>
+		</action>
+		
+	</package>
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+
+
+
+
+	
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+				<!-- Admin -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+	<package name="admin" extends="struts-default, tiles-default">
+		
+
+	 	<interceptors>
+	    		<interceptor name="AdminCheck" class="intercept.AdminCheck"/>
+	  	</interceptors>  
+	  	
+
+
+	  	<global-results>
+    		<result name="error" type="tiles">errorPage</result>
+    	</global-results>
+
+    	<global-exception-mappings>
+    		<exception-mapping result="error" exception="java.lang.Exception"/>
+    	</global-exception-mappings>  
+
+
+
+		<!-- admin - Member -->
+		<action name="admin_member" class="totalList.ListAction">
+			<param name="userReq">member</param>
+			<param name="userType">admin_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_member</result>
+		</action>
+
+
+
+
+		<!-- admin - QnA --> 
+		
+		<action name="admin_qna" class="totalList.ListAction">
+			<param name="userReq">qna</param>
+			<param name="userType">admin_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_qna</result>
+		</action>
+
+		<action name="admin_nc_qna" class="totalList.ListAction">
+			<param name="userReq">qna</param>
+			<param name="userType">admin_nc_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_qna</result>
+		</action>
+
+		<action name="admin_ok_qna" class="totalList.ListAction">
+			<param name="userReq">qna</param>
+			<param name="userType">admin_ok_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_qna</result>
+		</action>
+		
+		 <action name="admin_qnaForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">admin_qnaForm</result>
+		</action>
+		  
+		<action name="admin_qnaWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_nc_qna</result>
+		</action>
+
+		<action name="admin_qnaView" class="totalView.ViewAction">
+			<result type="tiles">admin_qnaView</result>
+		</action>
+
+		<action name="admin_qnaModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_qnaForm</result>
+		</action>
+		
+		<action name="admin_qnaDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_qna</result>
+		</action>
+
+
+
+
+
+
+
+		<!-- admin - FAQ -->
+		
+		<action name="admin_faq" class="totalList.ListAction">
+			<param name="userReq">faq</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_faq</result>
+		</action>
+		
+		<action name="admin_faqForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">admin_faqForm</result>
+		</action>
+
+		 <action name="admin_faqWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_faq</result>
+		</action>
+
+		<action name="admin_faqView" class="totalView.ViewAction">
+			<result type="tiles">admin_faqView</result>
+		</action> 
+
+		<action name="admin_faqModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_faqForm</result>
+		</action>
+		
+		<action name="admin_faqDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_faq</result>
+		</action>
+
+
+
+
+		
+		<!-- admin - Notice -->
+
+		<action name="admin_notice" class="totalList.ListAction">
+			<param name="userReq">notice</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_notice</result>
+		</action>
+
+
+		<action name="admin_noticeForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">admin_noticeForm</result>
+		</action>
+		
+		<action name="admin_noticeWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_notice</result>
+		</action>
+		
+		<action name="admin_noticeDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_notice</result>
+    		</action>
+
+		<action name="admin_noticeView" class="totalView.ViewAction">
+			<result type="tiles">admin_noticeView</result>
+		</action> 
+
+		<action name="admin_noticeModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_noticeForm</result>
+		</action>
+	
+
+
+
+
+
+		<!-- admin - MainCategory -->
+
+		<action name="admin_mainCat" class="totalList.ListAction">
+			<param name="userReq">mainCat</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_mainCat</result>
+		</action> 
+
+		<action name="admin_mainCatForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">admin_mainCatForm</result>
+		</action>
+		
+		<action name="admin_mainCatWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_mainCat</result>
+		</action>
+
+		<action name="admin_mainCatView" class="totalView.ViewAction">
+			<result type="tiles">admin_mainCatView</result>
+		</action> 
+
+		<action name="admin_mainCatModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_mainCatForm</result>
+		</action>
+		
+		<action name="admin_mainCatDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_mainCat</result>
+		</action>
+
+
+
+
+
+		<!-- admin - AreaCategory -->
+
+		<action name="admin_areaCat" class="totalList.ListAction">
+			<param name="userReq">areaCat</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_areaCat</result>
+		</action> 
+
+		<action name="admin_areaCatForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">admin_areaCatForm</result>
+		</action>
+		
+		<action name="admin_areaCatWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_areaCat</result>
+		</action>
+
+		<action name="admin_areaCatModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_areaCatForm</result>
+		</action>
+		
+		<action name="admin_areaCatDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_areaCat</result>
+		</action>
+
+
+
+
+		
+		<!-- admin - Order -->
+
+		<action name="admin_order" class="totalList.ListAction">
+			<param name="userReq">order</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_order</result>
+		</action> 
+
+		<action name="admin_orderForm" class="totalView.ViewAction">
+			<result type="tiles">admin_orderForm</result>
+		</action>
+		
+		<action name="admin_orderWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_order</result>
+		</action>
+
+		<action name="admin_orderView" class="totalView.ViewAction">
+			<result type="tiles">admin_orderView</result>
+		</action>
+
+		<action name="admin_orderDelete" class="totalDelete.DeleteAction">
+			<result type="redirect-action">admin_order</result>
+		</action>
+
+
+
+
+
+
+		<!-- admin - item -->
+
+		<action name="admin_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_item</result>
+		</action>
+
+		<action name="admin_nc_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">admin_nc_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_item</result>
+		</action>
+
+		<action name="admin_ok_item" class="totalList.ListAction">
+			<param name="userReq">item</param>
+			<param name="userType">admin_ok_</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_item</result>
+		</action>
+
+		<action name="admin_itemOk" class="auth.LoginAction" method="itemOk">
+			<result type="redirect-action">admin_nc_item</result>
+		</action>
+		
+		<action name="admin_itemForm" class="totalList.ListAction">
+			<param name="userReq">itemCat</param>
+			<param name="userType">admin</param>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="AdminCheck"/>
+			<interceptor-ref name="params"/>
+			<result name="login" type="tiles">loginForm</result>
+			<result type="tiles">admin_itemForm</result>
+		</action>
+		
+		<action name="admin_itemWrite" class="totalWrite.WriteAction">
+
+			<result type="redirect-action">admin_item</result>
+		</action>
+
+		<action name="admin_itemView" class="totalView.ViewAction">
+
+			<result type="tiles">admin_itemView</result>
+		</action>
+
+		<action name="admin_itemDelete" class="totalDelete.DeleteAction">
+			
+			<result type="redirect-action">admin_item</result>
+		</action>
+
+		<action name="admin_itemModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_areaCatForm</result>
+		</action>
+		
+		
+
+	</package>
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+
+
+
+
+
+
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+			<!-- Member Authority -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+
+	<package name="Member" extends="struts-default, tiles-default">
+
+		<action name="loginForm" class="auth.LoginAction" method="loginForm">
+			<result type="tiles">loginForm</result>
+		</action>
+
+		<action name="login" class="auth.LoginAction">
+			<result type="redirect-action">main</result>
+			<result name="login" type="redirect-action">
+				loginForm
+			</result>
+		</action>
+
+		<action name="logout" class="auth.LoginAction" method="logout">
+			<result type="redirect-action">main</result>
+		</action>
+
+		<action name="memberForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">memberForm</result>
+		</action>
+
+		<action name="memberJoin" class="totalWrite.WriteAction">
+			<result type="redirect-action">main</result>
+		</action>
+
+		<action name="memberModify" class="totalView.ViewAction">
+			<result type="chain">memberForm</result>
+		</action>
+		
+		<action name="memberDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_member</result>
+		</action>
+
+		<action name="idCheckAction" class="auth.LoginAction" method="idCheck">
+			<result>idCheck.jsp</result>
+		</action>
+
+	
+
+	</package>
+
+
+	
+
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+	<!-- ///////////////////////////// -->
+
+</struts>
