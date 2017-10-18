@@ -23,13 +23,8 @@
 	
 	
 	<sqlMap resource="/sqlQuery/memberSQL.xml"/>
-	<sqlMap resource="/sqlQuery/qnaSQL.xml"/>
 	<sqlMap resource="/sqlQuery/noticeSQL.xml"/>
-	<sqlMap resource="/sqlQuery/faqSQL.xml"/>
-	<sqlMap resource="/sqlQuery/itemSQL.xml"/>
-	<sqlMap resource="/sqlQuery/mainCategorySQL.xml"/>
-	<sqlMap resource="/sqlQuery/areaCategorySQL.xml"/>
-	<sqlMap resource="/sqlQuery/orderSQL.xml"/>
+
 
 	
 	

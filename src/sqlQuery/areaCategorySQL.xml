@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap>
+
+	<typeAlias alias="areaCat" type="model.AreaCategoryVO" />
+
+	<resultMap id="areaCatRes" class="areaCat">
+		<result property="no" column="NO"/>
+		<result property="name" column="NAME"/>
+		<result property="cat_code" column="CAT_CODE"/>
+	</resultMap>
+
+	<sql id="areaCat-select-all">
+		SELECT * FROM AREA_CATEGORY
+	</sql>
+
+	<sql id="where-areaCat-no">
+		WHERE NO = #no#
+	</sql>
+	
+	<select id="selectAreaCatAll" resultMap="areaCatRes" parameterClass="int">
+		<include refid="areaCat-select-all" />
+		ORDER BY NO DESC
+	</select>
+
+	<select id="selectAreaCatOne" resultMap="areaCatRes" parameterClass="int">
+		<include refid="areaCat-select-all" />
+		<include refid="where-areaCat-no" />
+	</select>
+
+	<select id="AreaCatSeqNo" resultClass="int">
+		SELECT LAST_NUMBER  FROM USER_SEQUENCES WHERE SEQUENCE_NAME = UPPER('AREA_CAT_NO_SEQ')
+	</select>
+	
+	<insert id="areaCatInsert" parameterClass="areaCat">
+		INSERT INTO AREA_CATEGORY (NO, NAME, CAT_CODE)
+		VALUES (AREA_CAT_NO_SEQ.NEXTVAL, #name#, #cat_code#)
+	</insert>
+
+	<update id="areaCatModify" parameterClass="areaCat">
+		UPDATE AREA_CATEGORY SET NAME = #name#, CAT_CODE = #cat_code#
+		<include refid="where-areaCat-no" />
+	</update>
+	
+	<delete id="deleteAreaCat" parameterClass="int">
+		DELETE FROM AREA_CATEGORY WHERE NO = #no#
+	</delete>
+
+
+	
+
+</sqlMap>

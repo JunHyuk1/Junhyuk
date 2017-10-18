@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap>
+
+	<typeAlias alias="faq" type="model.FaqVO" />
+
+	<resultMap id="faqRes" class="faq">
+		
+		<result property="no" column="NO"/>
+		<result property="name" column="NAME"/>
+		<result property="content" column="CONTENT"/>
+		
+	</resultMap>
+
+	<sql id="faq-select-all">
+		select * from FAQ
+	</sql>
+	
+	<sql id="where-faq-no">
+		WHERE NO = #no#
+	</sql>
+	
+	<sql id="where-faq-name">
+		WHERE NAME LIKE #%find%#
+	</sql>
+
+	<select id="selectFaqAll" resultMap="faqRes" parameterClass="int">
+		<include refid="faq-select-all" />
+		ORDER BY NO DESC
+	</select>
+
+	
+	<select id="selectFaqOne" resultClass="faq" parameterClass="int">
+		<include refid="faq-select-all" />
+		<include refid="where-faq-no" />
+	</select>
+	
+	<select id="FaqFindSelectAll" resultMap="faqRes" parameterClass="String">
+		<include refid="faq-select-all" />
+		<include refid="where-faq-name" />
+		ORDER BY NO DESC
+	</select>
+		
+	<insert id="insertFaq" parameterClass="faq">
+		INSERT INTO FAQ (NO, NAME, CONTENT) VALUES (FAQ_NO_SEQ.NEXTVAL, #name#, #content#)
+	</insert>
+
+	<update id="faqModify" parameterClass="faq">
+		UPDATE FAQ SET NAME = #name#, CONTENT = #content#
+		<include refid="where-faq-no" />
+	</update>
+	
+	<delete id="deleteFaq" parameterClass="int">
+		DELETE FROM FAQ
+		<include refid="where-faq-no" />
+	</delete>
+	
+
+</sqlMap>

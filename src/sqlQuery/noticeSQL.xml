@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap>
+
+	<typeAlias alias="notice" type="model.NoticeVO" />
+
+	<resultMap id="noticeRes" class="notice">
+		<result property="no" column="NO"/>
+		<result property="todate" column="TODATE"/>
+		<result property="name" column="NAME"/>
+		<result property="content" column="CONTENT"/>
+	</resultMap>
+
+	<sql id="notice-select-all">
+		SELECT * FROM NOTICE
+	</sql>
+	
+	<sql id="where-notice-no">
+		WHERE NO = #no#
+	</sql>
+	
+	<sql id="where-notice-name">
+		WHERE NAME LIKE #%find%#
+	</sql>
+
+	<select id="selectNoticeAll" resultMap="noticeRes" parameterClass="int">
+		<include refid="notice-select-all" />
+		ORDER BY NO DESC
+	</select>
+	
+	<select id="NoticeFindSelectAll" resultMap="noticeRes" parameterClass="String">
+		<include refid="notice-select-all" />
+		<include refid="where-notice-name" />
+		ORDER BY NO DESC
+	</select>
+	
+	<insert id="insertNotice" parameterClass="notice">
+		INSERT INTO NOTICE (NO, TODATE, NAME, CONTENT)
+		VALUES (NOTI_NO_SEQ.NEXTVAL, #todate#, #name#, #content#)
+	</insert>
+	
+	<select id="noticeSelectOne" resultMap="noticeRes" parameterClass="int">
+		<include refid="notice-select-all" />
+		<include refid="where-notice-no" />
+	</select>
+  
+  <update id="noticeModify" parameterClass="int">
+		UPDATE NOTICE SET NAME = #name#, CONTENT = #content#
+		<include refid="where-notice-no" />
+	</update>
+	
+	<delete id="deleteNotice" parameterClass="int">
+		DELETE FROM NOTICE
+		<include refid="where-notice-no" />
+	</delete>
+  
+</sqlMap>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap>
+
+	<typeAlias alias="item" type="model.ItemVO" />
+
+	<resultMap id="itemRes" class="item">
+		<result property="no" column="NO"/>
+		<result property="name" column="NAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="cat_no" column="CAT_NO"/>
+		<result property="area_cat_no" column="AREA_CAT_NO"/>
+		<result property="item_sum" column="ITEM_SUM"/>
+		<result property="item_detail" column="ITEM_DETAIL"/>
+		<result property="img" column="IMG"/> 
+		<result property="item_readhit" column="ITEM_READHIT"/>
+		<result property="sal_id" column="SAL_ID"/>
+		<result property="sal_name" column="SAL_NAME"/>
+		<result property="re_date" column="RE_DATE"/>  
+		<result property="item_check" column="ITEM_CHECK"/>
+	</resultMap>
+
+	<sql id="item-select-all">
+		select * from ITEM
+	</sql>
+
+	<sql id="where-item-no">
+		WHERE NO = #no#
+	</sql>
+	
+	<sql id="where-item-name">
+		WHERE NAME LIKE #%find%#
+	</sql>
+
+	<select id="itemSeqNo" resultClass="int">
+		SELECT LAST_NUMBER  FROM USER_SEQUENCES WHERE SEQUENCE_NAME = UPPER('ITEM_NO_SEQ')
+	</select>
+
+	<select id="selectItemAll" resultMap="itemRes" parameterClass="int">
+		<include refid="item-select-all" />
+		ORDER BY NO DESC
+	</select>
+
+	<select id="selectNcItemAll" resultMap="itemRes" parameterClass="item">
+		<include refid="item-select-all" />
+		WHERE ITEM_CHECK = 0
+		ORDER BY NO DESC
+	</select>
+
+	<select id="selectOkItemAll" resultMap="itemRes" parameterClass="item">
+		<include refid="item-select-all" />
+		WHERE ITEM_CHECK = 1
+		ORDER BY NO DESC
+	</select>
+
+	<select id="selectOtherCatItemAll" resultMap="itemRes" parameterClass="item">
+		<include refid="item-select-all" />
+		WHERE ITEM_CHECK = 1 AND CAT_NO = #cat_no#
+		ORDER BY ITEM_READHIT DESC
+	</select>
+
+	<select id="selectOtherAreaCatItemAll" resultMap="itemRes" parameterClass="item">
+		<include refid="item-select-all" />
+		WHERE ITEM_CHECK = 1 AND CAT_NO = #cat_no# AND AREA_CAT_NO = #area_cat_no#
+		ORDER BY ITEM_READHIT DESC
+	</select>
+
+	<select id="selectOtherAreaCatAll" resultMap="itemRes" parameterClass="int">
+		<include refid="item-select-all" />
+		WHERE ITEM_CHECK = 1 AND AREA_CAT_NO = #area_cat_no#
+		ORDER BY ITEM_READHIT DESC
+	</select>
+
+	<select id="selectMyItemAll" resultMap="itemRes" parameterClass="String">
+		<include refid="item-select-all" />
+		WHERE SAL_ID = #sal_id#
+		ORDER BY NO DESC
+	</select>
+
+	<select id="itemFindSelectAll" resultMap="itemRes" parameterClass="String">
+		<include refid="item-select-all" />
+		<include refid="where-item-name" />
+		ORDER BY NO DESC
+	</select>
+
+	<select id="selectItemOne" resultMap="itemRes" parameterClass="int">
+		<include refid="item-select-all" />
+		<include refid="where-item-no" />
+		ORDER BY NO DESC
+	</select>
+
+	<insert id="insertItem" parameterClass="item">
+		insert into ITEM (NO, NAME, PRICE, CAT_NO, AREA_CAT_NO, ITEM_SUM, ITEM_DETAIL, ITEM_READHIT, SAL_ID, SAL_NAME, RE_DATE, ITEM_CHECK) 
+		values (ITEM_NO_SEQ.NEXTVAL, #name#, #price#, #cat_no#, #area_cat_no#, #item_sum#, #item_detail#, #item_readhit#, #sal_id#, #sal_name#, #re_date#, #item_check#)
+	</insert>
+
+	<update id="itemModify" parameterClass="item">
+		UPDATE ITEM SET NAME = #name#, PRICE = #price#, ITEM_SUM = #item_sum#, ITEM_DETAIL = #item_detail#
+		<include refid="where-item-no" />
+	</update> 
+
+	<update id="memLevChange" parameterClass="String">
+		UPDATE MEMBER SET  MEM_LEV = 2 WHERE MEM_ID = #sal_id#
+	</update> 
+
+	<update id="itemCheckChange" parameterClass="int">
+		UPDATE ITEM SET ITEM_CHECK = 1
+		<include refid="where-item-no" />
+	</update> 
+	
+	<update id="itemReadHitUp" parameterClass="int">
+		UPDATE ITEM SET ITEM_READHIT = ITEM_READHIT + 1
+		<include refid="where-item-no" />
+	</update>
+
+	<select id="selectMainItem" resultMap="itemRes" parameterClass="int">
+		select * from ( select * from ITEM where CAT_NO  = #catNo# order by ITEM_READHIT desc) where rownum <![CDATA[<= 4]]>
+	</select>
+
+	<delete id="deleteItem" parameterClass="int">
+		DELETE FROM ITEM
+		<include refid="where-item-no" />
+	</delete>
+
+
+</sqlMap>
