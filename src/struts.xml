@@ -41,7 +41,7 @@
 
 
 		
-<!-- admin - Notice -->
+			<!-- NoticeList -->
 
 		<action name="admin_notice" class="totalList.ListAction">
 			<param name="userReq">notice</param>
@@ -51,6 +51,29 @@
 			<result name="login" type="tiles">loginForm</result>
 			<result type="tiles">admin_notice</result>
 		</action>
+		
+			<!-- NoticeWrite -->
+		
+		<action name="admin_noticeForm" class="totalWrite.WriteAction" method="form">
+			<result type="tiles">admin_noticeForm</result>
+		</action>
+		
+		<action name="admin_noticeWrite" class="totalWrite.WriteAction">
+			<result type="redirect-action">admin_notice</result>
+		</action>
+		
+		<action name="admin_noticeDelete" class="totalDelete.DeleteAction">
+			<result type="chain">admin_notice</result>
+    		</action>
+    		
+    		<action name="admin_noticeView" class="totalView.ViewAction">
+			<result type="tiles">admin_noticeView</result>
+		</action> 
+
+		<action name="admin_noticeModifyForm" class="totalView.ViewAction">
+			<result type="chain">admin_noticeForm</result>
+		</action>
+	
 
 
 	</package>
