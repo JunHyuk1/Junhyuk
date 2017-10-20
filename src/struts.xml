@@ -12,18 +12,6 @@
 	 <package name="admin" extends="struts-default, tiles-default">
 		
 
-	 	<interceptors>
-	    		<interceptor name="AdminCheck" class="intercept.AdminCheck"/>
-	  	</interceptors>  
-	  	
-	  	<global-results>
-    		<result name="error" type="tiles">errorPage</result>
-    	</global-results>
-
-    	<global-exception-mappings>
-    		<exception-mapping result="error" exception="java.lang.Exception"/>
-    	</global-exception-mappings>  
-
 
 
 		<!-- admin - Member -->
@@ -31,7 +19,6 @@
 			<param name="userReq">member</param>
 			<param name="userType">admin_</param>
 			<interceptor-ref name="staticParams"/>
-			<interceptor-ref name="AdminCheck"/>
 			<interceptor-ref name="params"/>
 			<result name="login" type="tiles">loginForm</result>
 			<result type="tiles">admin_member</result>

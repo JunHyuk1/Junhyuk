@@ -45,7 +45,7 @@
 		<include refid="where-notice-no" />
 	</select>
   
-  <update id="noticeModify" parameterClass="int">
+  <update id="noticeModify" parameterClass="notice">
 		UPDATE NOTICE SET NAME = #name#, CONTENT = #content#
 		<include refid="where-notice-no" />
 	</update>
